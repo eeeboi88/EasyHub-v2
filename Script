@@ -1,0 +1,296 @@
+if game.PlaceId == 7047488135 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Speed Simulator v.1.0.0", "Midnight")
+    local Main = Window:NewTab("Main")
+    local MainS = Main:NewSection("Main Options")
+    local Credit = Window:NewTab("Credits")
+    local CreditS = Credit:NewSection("Credits")
+
+    MainS:NewButton("Speed", "E", function()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 9999999
+    end)
+    MainS:NewButton("Reset speed", "E", function()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    end)
+    MainS:NewButton("Jump", "E", function()
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 1000
+    end)
+    MainS:NewButton("Reset jump", "E", function()
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end)
+
+    CreditS:NewLabel("Scripting: EasyOwnerCC")
+    CreditS:NewLabel("UI Libary xHeptc")
+
+
+elseif game.PlaceId == 2622527242 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("RBreach v.1.0.1", "Midnight")
+    local Main2 = Window:NewTab("Main")
+    local Main2S = Main2:NewSection("Main Options")
+    local Main1 = Window:NewTab("Player")
+    local Main1S = Main1:NewSection("Player Options")
+    local Credit = Window:NewTab("Credits")
+    local CreditS = Credit:NewSection("Credits")
+
+    Main2S:NewButton("Infinte Yeild", "", function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+    end)
+    Main1S:NewSlider("Speed", "", 120, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    Main1S:NewSlider("Jump", "", 75, 50, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)
+
+    CreditS:NewLabel("Scripting: EasyOwnerCC")
+    CreditS:NewLabel("UI Libary xHeptc")
+
+
+elseif game.PlaceId == 155615604 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Prison Life", "Midnight")
+    local Main1 = Window:NewTab("Main")
+    local Main1S = Main1:NewSection("Main Options")
+    local Main2 = Window:NewTab("Player")
+    local Main2S = Main2:NewSection("Player Options")
+    local Misc = Window:NewTab("Misc")
+    local MiscS = Misc:NewSection("Misc Options")
+    local goo = Window:NewTab("Weapon")
+    local gooS = goo:NewSection("Weapon Options")
+
+
+
+    -- Player functions
+    Main2S:NewSlider("Speed", "Makes you fast as shit", 1000, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    Main2S:NewSlider("Jump", "Want to see space?", 1000, 50, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)
+    Main2S:NewToggle("Super Speed", "IM FAST AS FUCK", function(state)
+        if state then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 10000
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        end
+    end)
+    Main2S:NewToggle("Super Jump", "Want to see jesus?", function(state)
+        if state then
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = 10000
+        else
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+        end
+    end)
+    Main2S:NewButton("Fly", "Cant turn off lol", function()
+        loadstring(game:HttpGet("https://rbxscript.com/scripts-copy/fly-noclip-infinityjump-btools-khukm0zc"))()
+    end)
+    Main2S:NewButton("Noclip", "You can walk through walls", function()
+        print("Not implamented yet")
+    end)
+    MiscS:NewButton("Infinte Yeild", "Basic FE gui", function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+    end)
+    MiscS:NewLabel("More Coming Soon")
+    Main1S:NewButton("Aimbot", "Typical Aimbot", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/ygp8Enye"))()
+    end)
+    Main1S:NewButton("ESP", "Typical Esp", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/fernandoagoncalves/universal-esp/main/esp.lua", true))()
+    end)
+
+
+
+
+
+    gooS:NewDropdown("Give Gun", "Gives the player any gun selected.", {"M9", "Remington 870", "AK-47", "M4A1"}, function(v)
+        local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+        local Event = game:GetService("Workspace").Remote.ItemHandler
+        Event:InvokeServer(A_1)
+    end)
+    gooS:NewDropdown("Give Other", "", {"Keycard", "Riot Shield"}, function(v)
+        local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+        local Event = game:GetService("Workspace").Remote.ItemHandler
+        Event:InvokeServer(A_1)
+    end)
+
+    gooS:NewDropdown("Gun Mod", "Makes your guns rlly op and I MEAN OP", {"M9", "Remington 870", "AK-47", "M4A1"}, function(v)
+        local module = nil
+        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
+            module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+        elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(v) then
+            module = require(game:GetService("Players").LocalPlayer.Character[v].GunStates)
+        end
+        if module ~= nil then
+            module["Damage"] = 5000
+            module["MaxAmmo"] = math.huge
+            module["CurrentAmmo"] = math.huge
+            module["StoredAmmo"] = math.huge
+            module["FireRate"] = 0
+            module["Range"] = math.huge
+            module["Spread"] = 0
+            module["ReloadTime"] = 0
+            module["Bullets"] = 5
+        end
+    end)
+
+    elseif game.PlaceId == 3956818381 then
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Ninja Legends", "Midnight")
+        local Auto = Window:NewTab("Main")
+        local AutoS = Auto:NewSection("Main Options")
+        local PlayerOption = Window:NewTab("Player")
+        local PlayerOptionS = PlayerOption:NewSection("Player Options")
+        local Unlockall = Window:NewTab("Misc")
+        local unlockallS = Unlockall:NewSection("Misc Options")
+        local Buyall = Window:NewTab("Buy All")
+        local Buyalls = Buyall:NewSection("Buy all options")
+        local credit = Window:NewTab("Credits")
+        local CreditS = credit:NewSection("")
+
+
+        AutoS:NewLabel("Auto Farm Section")
+        AutoS:NewToggle("Auto Swing", "Auto swings your sword for you", function(v)
+            getgenv().autoswing = v
+            while true do
+                if not getgenv().autoswing then return end
+                for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v:FindFirstChild("ninjitsuGain") then
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                        break
+                    end
+                end                
+                local A_1 = "swingKatana"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1)
+                wait()
+            end           
+        end)
+        AutoS:NewToggle("Auto Sell", "Makes your player auto sell", function(v)
+            getgenv().autosell = v
+            if v == true then
+                print("on")
+            end
+            while true do
+                if getgenv().autosell == false then 
+                    print("off")
+                    return 
+                end
+                game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                wait(0.1)
+                game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(0,0,0)
+                wait(0.1)
+            end
+        end)
+        unlockallS:NewButton("Unlock All islands", "Unlocks all islands for you", function()
+            for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetChildren()) do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                wait(0.1)
+            end
+            wait(0.1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
+        end)
+        Buyalls:NewToggle("Buy all swords", "Buys swords for you", function(v)
+            getgenv().buyswords = v
+            while true do
+                if not getgenv().buyswords then return end
+
+                local A_1 = "buyAllSwords"
+                local A_2 = "Inner Peace Island"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1, A_2)
+                wait(0.5)
+            end
+        end)
+        Buyalls:NewToggle("Buy all belts", "Buys belts for you", function(v)
+            getgenv().buybelts = v
+            while true do
+                if not getgenv().buybelts then return end
+
+                local A_1 = "buyAllBelts"
+                local A_2 = "Inner Peace Island"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1, A_2)
+                wait(0.5)
+            end
+        end)
+
+
+
+
+        CreditS:NewLabel("Scripting: EasyOwnerCC")
+        CreditS:NewLabel("UI Libary: xHeptc")
+
+
+
+
+
+
+
+        --player functions
+        PlayerOptionS:NewSlider("Speed", "Changes Speed", 200, 16, function(v)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+        end)
+        PlayerOptionS:NewSlider("Jump Power", "Changes the jump power", math.huge, 50, function(v)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+        end)
+
+
+
+    elseif game.PlaceId == 3295514368 then
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Sandhurst Academy", "Midnight")
+        local Troll = Window:NewTab("Trolling")
+        local TrollS = Troll:NewSection("Trolling Options")
+        local Ti = Window:NewTab("Players")
+        local TiS = Ti:NewSection("Player Options")
+
+
+        -- Trolling Function
+        TrollS:NewButton("UTG Hub v3", "UTG LETS FUCKING GO", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Blukez/Scripts/main/UTG%20V3%20RAW"))()
+        end)
+
+
+        --Player Function
+        TiS:NewSlider("Walk Speed", "Fast", 500, 16, function(v)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+        end)
+        TiS:NewSlider("Jump Power", "Jump High", 200, 50, function(v)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+        end)
+
+
+     elseif game.PlaceId == 4651779470 then
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Recoild BETA", "Midnight")
+        local Legit = Window:NewTab("Legit")
+        local LegitS = Legit:NewSection("Legit Options")
+        local ESP = Window:NewTab("Visuals")
+        local ESPS = ESP:NewSection("Visual Options")
+        local E = Window:NewTab("Player")
+        local ES= E:NewSection("Player Options")
+        local Credit = Window:NewTab("Credits")
+        local CreditS Credit:NewSection("")
+
+
+        --legit function
+        LegitS:NewButton("Aimbot", "Typical Aimbot", function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/ygp8Enye"))()
+    end)
+    LegitS:NewToggle("Team Check", "Checks if on team", function(state)
+        if state then
+            print("on")
+        else
+            print("off")
+        end
+    end)
+    ESPS:NewButton("ESP", "Shows players", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/fernandoagoncalves/universal-esp/main/esp.lua", true))()
+    end)
+    ES:NewSlider("Walkspeed", "E", 200, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    CreditS:NewLabel("Scripting: EasyOwnerCC")
+    CreditS:NewLabel("UI Libary: xHaptc")
+end
